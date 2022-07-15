@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> product management web</h1>
+<a href="/create">Create product</a>
+<form action="/search" method="get">
+<input name="search" placeholder="Search">
+<input type="submit" >
+<!--<button> <a th:href="@{/search}" > search </a></button>-->
+</form>
+<table border="1px" width="100%">
+    <tr>
+        <th> Id</th>
+        <th> Name</th>
+        <th> Price</th>
+        <th> Img</th>
+        <th> Category</th>
+        <th> Status</th>
+        <th> Edit</th>
+        <th> Delete</th>
+    </tr>
+    <tr th:each="c:${products}">
+        <td th:text="${c.getId()}"></td>
+        <td th:text="${c.getName()}"></td>
+        <td th:text="${c.getPrice()}"></td>
+        <td><img th:src="${c.getImg()}" width="400px"></td>
+        <td th:text="${c.getCategory()}"></td>
+        <td th:text="${c.getStatus()== true }?'still': 'sold out' "
+            th:style="${c.getStatus()== true}? 'color: blue': 'color:red'"></td>
+        <td>
+            <button><a th:href="@{/edit(id=${c.getId()})}"> Edit</a></button>
+        </td>
+        <td>
+            <button><a th:href="@{/delete(id=${c.getId()})}"> Delete</a></button>
+        </td>
+        <td></td>
+
+    </tr>
+</table>
+</body>
+</html>

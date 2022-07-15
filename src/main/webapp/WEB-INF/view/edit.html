@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/edit" method="post">
+    table>
+    <tr>
+        <td><input th:value="${product.getId()}" name="id" readonly placeholder="Enter id"></td>
+        <td><input th:value="${product.getName()}" name="name" placeholder="Enter name"></td>
+        <td><input th:value="${product.getPrice()}" name="price" placeholder="Enter price"></td>
+        <td><input th:value="${product.getImg()}"name="img" placeholder="Enter img"></td>
+        <td>
+            <select name="idCategory">
+                <option th:each="c:${category} " th:value="${c.getId() }" th:text="${c.getName()}"></option>
+
+            </select>
+        </td>
+        <td>
+            <select name="status">
+                <option value="true"> true</option>
+                <option value="false"> false</option>
+            </select>
+        </td>
+    </tr>
+    <button type="submit">edit</button>
+    </table>
+</form>
+
+</body>
+</html>
